@@ -1,0 +1,27 @@
+{% comment %}
+  Purelane Customer Review Card Snippet
+  Accepts:
+  - block: Section block containing review settings
+{% endcomment %}
+
+<article class="glass-2 rcard" {{ block.shopify_attributes }}>
+  <div class="st" aria-label="{{ block.settings.stars | default: '5' }} out of 5 stars">
+    ★★★★★
+  </div>
+
+  {% if block.settings.headline != blank %}
+    <h5>{{ block.settings.headline }}</h5>
+  {% endif %}
+
+  {% if block.settings.review_body != blank %}
+    <p>{{ block.settings.review_body }}</p>
+  {% endif %}
+
+  <div class="who">
+    {% render 'icon-purelane', icon: 'check-simple' %}
+    <b>{{ block.settings.author_name | default: 'Anita' }}</b>
+    {% if block.settings.product_purchased != blank %}
+      <span>&middot; {{ block.settings.product_purchased }}</span>
+    {% endif %}
+  </div>
+</article>

@@ -1,0 +1,20 @@
+{% comment %}
+  Purelane Price Formatting Snippet
+  Accepts:
+  - price_product: Product object
+  - price_variant: Variant object (optional)
+{% endcomment %}
+
+{%- assign target = price_variant | default: price_product.selected_or_first_available_variant | default: price_product -%}
+{%- assign price = target.price | default: 20000 -%}
+{%- assign compare_at_price = target.compare_at_price -%}
+
+<div class="pr">
+  <strong>{{ price | money }}</strong>
+  {%- if compare_at_price > price -%}
+    <s>{{ compare_at_price | money }}</s>
+    {%- assign savings = compare_at_price | minus: price -%}
+    {%- assign pct = savings | times: 100 | divided_by: compare_at_price -%}
+    <em>{{ pct }}% off</em>
+  {%- endif -%}
+</div>

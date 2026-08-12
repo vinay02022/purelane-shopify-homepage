@@ -1,0 +1,82 @@
+{% comment %}
+  Purelane Bundle Tier Card Snippet
+  Accepts:
+  - block: Section block containing tier settings
+{% endcomment %}
+
+{%- assign is_popular = block.settings.is_popular -%}
+{%- assign qty = block.settings.qty_number | default: 2 -%}
+
+<article class="glass tier {% if is_popular %}best{% endif %} rv" {{ block.shopify_attributes }}>
+  {% if block.settings.tag != blank %}
+    <span class="tag">{{ block.settings.tag }}</span>
+  {% endif %}
+
+  <div class="tierpix {% if qty >= 5 %}five{% endif %}" aria-hidden="true">
+    {% if block.settings.image_1 != blank %}
+      <img src="{{ block.settings.image_1 | image_url: width: 120 }}" alt="Tier Product Image 1" loading="lazy" width="62" height="62">
+    {% else %}
+      <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzODAgMTE3NyIgd2lkdGg9IjM4MCIgaGVpZ2h0PSIxMTc3Ij48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjNmI1NWI4IiByeD0iNDAiLz48L3N2Zz4=" alt="Product preview" loading="lazy" width="62" height="62">
+    {% endif %}
+
+    {% if qty >= 3 %}
+      {% if block.settings.image_2 != blank %}
+        <img src="{{ block.settings.image_2 | image_url: width: 120 }}" alt="Tier Product Image 2" loading="lazy" width="62" height="62">
+      {% else %}
+        <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzODAgMTE4MCIgd2lkdGg9IjM4MCIgaGVpZ2h0PSIxMTgwIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjN2E2MmMyIiByeD0iNDAiLz48L3N2Zz4=" alt="Product preview" loading="lazy" width="62" height="62">
+      {% endif %}
+    {% endif %}
+
+    {% if qty >= 5 %}
+      {% if block.settings.image_3 != blank %}
+        <img src="{{ block.settings.image_3 | image_url: width: 120 }}" alt="Tier Product Image 3" loading="lazy" width="62" height="62">
+      {% else %}
+        <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzNjAgMTA1NCIgd2lkdGg9IjM2MCIgaGVpZ2h0PSIxMDU0Ij48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjNWE0NmEzIiByeD0iNDAiLz48L3N2Zz4=" alt="Product preview" loading="lazy" width="62" height="62">
+      {% endif %}
+    {% endif %}
+  </div>
+
+  <div class="qty">
+    {{ qty }}
+    <small>Products</small>
+  </div>
+
+  <div class="price">
+    {{ block.settings.price | default: '₹349' }}
+    {% if block.settings.compare_at_price != blank %}
+      <s>{{ block.settings.compare_at_price }}</s>
+    {% endif %}
+  </div>
+
+  {% if block.settings.unit_price_note != blank %}
+    <p class="body-s" style="font-size:12px">{{ block.settings.unit_price_note }}</p>
+  {% endif %}
+
+  <ul>
+    {% if block.settings.feature_1 != blank %}
+      <li>
+        {% render 'icon-purelane', icon: 'check' %}
+        {{ block.settings.feature_1 }}
+      </li>
+    {% endif %}
+    {% if block.settings.feature_2 != blank %}
+      <li>
+        {% render 'icon-purelane', icon: 'check' %}
+        {{ block.settings.feature_2 }}
+      </li>
+    {% endif %}
+    {% if block.settings.feature_3 != blank %}
+      <li>
+        {% render 'icon-purelane', icon: 'check' %}
+        {{ block.settings.feature_3 }}
+      </li>
+    {% endif %}
+  </ul>
+
+  <a class="btn {% if is_popular %}btn-primary{% else %}btn-ghost{% endif %}" href="{{ block.settings.button_url | default: '#shop' }}">
+    {{ block.settings.button_label | default: 'Build this box' }}
+    {% if is_popular %}
+      {% render 'icon-purelane', icon: 'arrow-right' %}
+    {% endif %}
+  </a>
+</article>

@@ -1,0 +1,56 @@
+{% comment %}
+  Purelane Reusable Product Card Snippet
+{% endcomment %}
+{%- assign product_title = card_product.title | default: "Purelane Homecare Product" -%}
+{%- assign current_variant = card_product.selected_or_first_available_variant -%}
+{%- assign product_url = card_product.url | default: "#shop" -%}
+
+<article class="glass card rv">
+  <a href="{{ product_url }}" class="shot" aria-label="{{ product_title | escape }}">
+    {%- if card_product.available == false -%}
+      <span class="pill" style="border-color: rgba(200, 50, 50, 0.4); color: #9c1e1e;">Sold out</span>
+    {%- elsif card_product.compare_at_price > card_product.price -%}
+      <span class="pill">Best seller</span>
+    {%- else -%}
+      <span class="pill">New</span>
+    {%- endif -%}
+
+    {%- if card_product.featured_image -%}
+      <img
+        src="{{ card_product.featured_image | image_url: width: 300 }}"
+        alt="{{ card_product.featured_image.alt | default: product_title | escape }}"
+        loading="lazy"
+        width="150"
+        height="150"
+      >
+    {%- else -%}
+      <div style="display:grid; place-items:center; height:100%; font-size:11px; font-weight:700; color:var(--paper-3); text-transform:uppercase; letter-spacing:0.1em; text-align:center; padding:10px;">
+        No image available
+      </div>
+    {%- endif -%}
+  </a>
+
+  <h4 style="display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; min-height: 2.4em;">
+    <a href="{{ product_url }}" style="color: inherit;">{{ product_title }}</a>
+  </h4>
+
+  <div class="rate">
+    <b>★ {{ card_product.metafields.reviews.rating.value | default: '4.8' }}</b>
+    · {{ card_product.metafields.reviews.rating_count | default: '237' }} reviews
+  </div>
+
+  {% render 'price-purelane', price_product: card_product %}
+
+  {%- if card_product.available != false -%}
+    {% form 'product', card_product %}
+      <input type="hidden" name="id" value="{{ current_variant.id | default: 123456 }}">
+      <button type="submit" class="btn btn-ghost btn-sm" aria-label="Add {{ product_title | escape }} to cart">
+        Add to cart
+      </button>
+    {% endform %}
+  {%- else -%}
+    <button type="button" class="btn btn-ghost btn-sm" disabled style="opacity: 0.5; cursor: not-allowed;" aria-label="{{ product_title | escape }} is sold out">
+      Sold out
+    </button>
+  {%- endif -%}
+</article>

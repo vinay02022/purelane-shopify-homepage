@@ -1,0 +1,96 @@
+{% comment %}
+  Purelane Combo Card Component
+  Accepts:
+  - block: Section block containing settings
+{% endcomment %}
+
+{%- assign combo_title = block.settings.title | default: "Kitchen essentials" -%}
+{%- assign is_popular = block.settings.is_popular -%}
+
+<article class="glass combo {% if is_popular %}hero-combo{% endif %}" {{ block.shopify_attributes }}>
+  <div class="tray">
+    {% if block.settings.save_text != blank %}
+      <span class="save">You save {{ block.settings.save_text }}</span>
+    {% endif %}
+
+    {% if block.settings.flag_text != blank %}
+      <span class="flag">{{ block.settings.flag_text }}</span>
+    {% endif %}
+
+    <div class="stack">
+      {% comment %} Product 1 Slot {% endcomment %}
+      {% if block.settings.product_1 != blank %}
+        {%- assign p1 = block.settings.product_1 -%}
+        <span class="it">
+          {% if p1.featured_image %}
+            <img src="{{ p1.featured_image | image_url: width: 150 }}" alt="{{ p1.title | escape }}" loading="lazy" width="66" height="66">
+          {% else %}
+            <span class="tile">{% render 'icon-purelane', icon: 'leaf' %}</span>
+          {% endif %}
+          <span>{{ block.settings.p1_note | default: p1.title }}</span>
+        </span>
+      {% else %}
+        <span class="it">
+          <span class="tile">{% render 'icon-purelane', icon: 'leaf' %}</span>
+          <span>{{ block.settings.p1_note | default: "Cuts grease" }}</span>
+        </span>
+      {% endif %}
+
+      {% comment %} Product 2 Slot {% endcomment %}
+      {% if block.settings.product_2 != blank or block.settings.p2_note != blank %}
+        <span class="plus" aria-hidden="true">+</span>
+        {%- assign p2 = block.settings.product_2 -%}
+        <span class="it">
+          {% if p2.featured_image %}
+            <img src="{{ p2.featured_image | image_url: width: 150 }}" alt="{{ p2.title | escape }}" loading="lazy" width="66" height="66">
+          {% else %}
+            <span class="tile">{% render 'icon-purelane', icon: 'leaf' %}</span>
+          {% endif %}
+          <span>{{ block.settings.p2_note | default: p2.title | default: "Squeaky clean" }}</span>
+        </span>
+      {% endif %}
+
+      {% comment %} Product 3 Slot {% endcomment %}
+      {% if block.settings.product_3 != blank or block.settings.p3_note != blank %}
+        <span class="plus" aria-hidden="true">+</span>
+        {%- assign p3 = block.settings.product_3 -%}
+        <span class="it">
+          {% if p3.featured_image %}
+            <img src="{{ p3.featured_image | image_url: width: 150 }}" alt="{{ p3.title | escape }}" loading="lazy" width="66" height="66">
+          {% else %}
+            <span class="tile">{% render 'icon-purelane', icon: 'leaf' %}</span>
+          {% endif %}
+          <span>{{ block.settings.p3_note | default: p3.title | default: "Limescale remover" }}</span>
+        </span>
+      {% endif %}
+    </div>
+  </div>
+
+  <div class="body">
+    <h3>{{ combo_title }}</h3>
+    {% if block.settings.item_count != blank %}
+      <div class="cnt">{{ block.settings.item_count }}</div>
+    {% endif %}
+
+    {% if block.settings.description != blank %}
+      <p class="inc">{{ block.settings.description }}</p>
+    {% endif %}
+
+    <div class="prow">
+      <strong>{{ block.settings.price | default: '₹499' }}</strong>
+      {% if block.settings.compare_at_price != blank %}
+        <s>{{ block.settings.compare_at_price }}</s>
+      {% endif %}
+      {% if block.settings.save_text != blank %}
+        <em>Save {{ block.settings.save_text }}</em>
+      {% endif %}
+    </div>
+
+    <div class="fine">Inclusive of all taxes &middot; COD available</div>
+
+    <a class="btn btn-ghost" href="{{ block.settings.button_url | default: '#bundles' }}">
+      {{ block.settings.button_label | default: 'Shop bundle' }}
+      {% render 'icon-purelane', icon: 'arrow-right' %}
+    </a>
+  </div>
+</article>
