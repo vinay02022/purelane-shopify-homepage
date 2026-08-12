@@ -1,0 +1,12 @@
+<div class="wrap sec">
+  <div class="glass sec-pad">
+    <h1 class="d2">{{ product.title }}</h1>
+    <div class="pr" style="margin: 20px 0;">
+      <strong>{{ product.price | money }}</strong>
+    </div>
+    {% form 'product', product %}
+      <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+      <button type="submit" class="btn btn-primary">Add to cart</button>
+    {% endform %}
+  </div>
+</div>

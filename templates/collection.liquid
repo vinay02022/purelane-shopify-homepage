@@ -1,0 +1,10 @@
+<div class="wrap sec">
+  <div class="panel-head">
+    <h1 class="d2">{{ collection.title }}</h1>
+  </div>
+  <div class="shelf">
+    {% for product in collection.products %}
+      {% render 'card-product-purelane', card_product: product %}
+    {% endfor %}
+  </div>
+</div>
