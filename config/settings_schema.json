@@ -1,0 +1,25 @@
+[
+  {
+    "name": "theme_info",
+    "theme_name": "Purelane Dawn Custom",
+    "theme_author": "Senior Shopify Engineer",
+    "theme_version": "1.0.0"
+  },
+  {
+    "name": "Colors",
+    "settings": [
+      {
+        "type": "color",
+        "id": "color_brand",
+        "label": "Brand Primary",
+        "default": "#4b3a8f"
+      },
+      {
+        "type": "color",
+        "id": "color_accent",
+        "label": "Brand Accent",
+        "default": "#b8701c"
+      }
+    ]
+  }
+]

@@ -1,0 +1,224 @@
+<!doctype html>
+<html class="no-js" lang="{{ request.locale.iso_code }}">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="theme-color" content="{{ settings.color_brand | default: '#4b3a8f' }}">
+    <link rel="canonical" href="{{ canonical_url }}">
+
+    <title>
+      {{ page_title }}
+      {%- if current_tags %} &ndash; tagged "{{ current_tags | join: ', ' }}"{% endif -%}
+      {%- if current_page != 1 %} &ndash; Page {{ current_page }}{% endif -%}
+      {%- unless page_title contains shop.name %} &ndash; {{ shop.name }}{% endunless -%}
+    </title>
+
+    {% if page_description %}
+      <meta name="description" content="{{ page_description | escape }}">
+    {% endif %}
+
+    <!-- Google Fonts: Outfit & Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Theme Base Stylesheet -->
+    {{ 'purelane-theme.css' | asset_url | stylesheet_tag }}
+
+    {{ content_for_header }}
+  </head>
+
+  <body class="template-{{ template.name }}">
+    <!-- Skip to Content for Accessibility -->
+    <a class="skip-to-content-link button visually-hidden" href="#MainContent">
+      Skip to content
+    </a>
+
+    <!-- Fixed Ambient Water & Background Scene Layer -->
+    <div class="scenes" id="scenes" data-d="1" aria-hidden="true">
+      <div class="scene s1 on"></div>
+      <div class="scene s2"></div>
+      <div class="scene s3"></div>
+      <div class="scene s4"></div>
+
+      <div class="water" id="water">
+        <div class="wl wl-a">
+          <svg class="sv" viewBox="0 0 1800 1100" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="cg" x1="0" y1="0" x2="1" y2="0">
+                <stop offset="0" stop-color="#eafff4" stop-opacity="0"/>
+                <stop offset=".18" stop-color="#f2fff8" stop-opacity=".95"/>
+                <stop offset=".5" stop-color="#ffffff" stop-opacity="1"/>
+                <stop offset=".82" stop-color="#e6fbef" stop-opacity=".9"/>
+                <stop offset="1" stop-color="#eafff4" stop-opacity="0"/>
+              </linearGradient>
+              <filter id="wf" x="-12%" y="-12%" width="124%" height="124%" color-interpolation-filters="sRGB">
+                <feTurbulence type="fractalNoise" baseFrequency="0.0022 0.019" numOctaves="3" seed="21" result="n"/>
+                <feDisplacementMap in="SourceGraphic" in2="n" scale="72" xChannelSelector="R" yChannelSelector="G"/>
+              </filter>
+            </defs>
+            <g filter="url(#wf)">
+              <path d="M262 230 Q372 261 482 238 Q592 247 702 250 Q812 210 923 235 Q1033 201 1143 213 Q1253 232 1363 215 Q1473 261 1583 238 Q1694 248 1804 250" stroke="url(#cg)" stroke-width="1.7" fill="none" opacity="0.45"/>
+              <path d="M137 256 Q307 242 477 258 Q646 238 816 245 Q985 259 1155 247 Q1324 277 1494 262 Q1664 267 1833 269" stroke="url(#cg)" stroke-width="5.1" fill="none" opacity="0.23"/>
+            </g>
+          </svg>
+        </div>
+        <div class="wl wl-b">
+          <svg class="sv" viewBox="0 0 1800 1100" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <filter id="wf2" x="-12%" y="-12%" width="124%" height="124%" color-interpolation-filters="sRGB">
+                <feTurbulence type="fractalNoise" baseFrequency="0.005 0.031" numOctaves="2" seed="47" result="n"/>
+                <feDisplacementMap in="SourceGraphic" in2="n" scale="46" xChannelSelector="R" yChannelSelector="G"/>
+              </filter>
+            </defs>
+            <g filter="url(#wf2)">
+              <path d="M355 217 Q442 234 529 234 Q616 202 703 222 Q790 190 877 203 Q964 215 1051 202" stroke="url(#cg)" stroke-width="3.4" fill="none" opacity="0.17"/>
+            </g>
+          </svg>
+        </div>
+        <div class="wl wl-c">
+          <svg class="sv" viewBox="0 0 1800 1100" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="sg" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0" stop-color="#f4fff9" stop-opacity=".85"/>
+                <stop offset=".38" stop-color="#dcf6e7" stop-opacity=".28"/>
+                <stop offset="1" stop-color="#d4f2e2" stop-opacity="0"/>
+              </linearGradient>
+            </defs>
+            <polygon points="95,-80 152,-80 517,1180 439,1180" fill="url(#sg)" opacity="0.26"/>
+            <polygon points="433,-80 491,-80 885,1180 807,1180" fill="url(#sg)" opacity="0.41"/>
+          </svg>
+        </div>
+        <div class="wl wl-s">
+          <svg class="sv" viewBox="0 0 1800 1100" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="sf" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0" stop-color="#ffffff" stop-opacity=".55"/>
+                <stop offset=".55" stop-color="#e8fff2" stop-opacity=".16"/>
+                <stop offset="1" stop-color="#e8fff2" stop-opacity="0"/>
+              </linearGradient>
+            </defs>
+            <rect x="-100" y="-40" width="2000" height="150" fill="url(#sf)"/>
+          </svg>
+        </div>
+        <div class="bub">
+          <span style="--x:91.9%;--s:6.7px;--dur:21.5s;--dly:19.0s;--drift:-11px"></span>
+          <span style="--x:43.4%;--s:5.7px;--dur:26.8s;--dly:16.1s;--drift:-11px"></span>
+          <span style="--x:6.0%;--s:3.6px;--dur:24.4s;--dly:10.6s;--drift:3px"></span>
+          <span style="--x:69.4%;--s:8.1px;--dur:21.9s;--dly:10.7s;--drift:-24px"></span>
+          <span style="--x:18.6%;--s:9.0px;--dur:24.5s;--dly:8.7s;--drift:13px"></span>
+        </div>
+      </div>
+      <div class="vig"></div>
+    </div>
+
+    <!-- Announcement Ticker -->
+    <div class="ticker" aria-label="Announcement">
+      <div class="track">
+        <span>Free shipping <b>on every bundle across India</b></span>
+        <span>100% plant-based <b>and non-toxic</b></span>
+        <span>Loved by <b>30,000+ happy homes</b></span>
+        <span>Buy 3 <b>at flat ₹499</b></span>
+        <span>Free shipping <b>on every bundle across India</b></span>
+        <span>100% plant-based <b>and non-toxic</b></span>
+        <span>Loved by <b>30,000+ happy homes</b></span>
+        <span>Buy 3 <b>at flat ₹499</b></span>
+      </div>
+    </div>
+
+    <!-- Fixed Glass Header -->
+    <header id="hdr" role="banner">
+      <div class="navpill glass">
+        <a class="brand" href="/" aria-label="{{ shop.name }} Home">
+          <span class="mark">
+            {% render 'icon-purelane', icon: 'logo' %}
+          </span>
+          <span class="txt">
+            <span class="n1">{{ shop.name | default: 'Purelane' }}</span>
+            <span class="n2">Clean, simply</span>
+          </span>
+        </a>
+        <nav class="nav" aria-label="Primary Navigation">
+          <a href="#top">Home</a>
+          <a href="#shop">Shop</a>
+          <a href="#combos">Combos</a>
+          <a href="#bundles">Bundles</a>
+          <a href="#reviews">Reviews</a>
+        </nav>
+        <div class="navtools">
+          <button class="ico hide-s" type="button" aria-label="Search">{% render 'icon-purelane', icon: 'search' %}</button>
+          <button class="ico hide-s" type="button" aria-label="Account">{% render 'icon-purelane', icon: 'account' %}</button>
+          <a href="/cart" class="ico" aria-label="Cart, {{ cart.item_count }} items">
+            {% render 'icon-purelane', icon: 'cart' %}
+            <span class="dot">{{ cart.item_count }}</span>
+          </a>
+          <button class="ico burger" type="button" aria-label="Toggle Menu">{% render 'icon-purelane', icon: 'burger' %}</button>
+        </div>
+      </div>
+    </header>
+
+    <!-- Side Rail Progress Indicator -->
+    <nav class="rail" aria-label="Section progress">
+      <a href="#top" class="on" aria-label="Hero"></a>
+      <a href="#shop" aria-label="Shop"></a>
+      <a href="#combos" aria-label="Combos"></a>
+      <a href="#bundles" aria-label="Bundles"></a>
+      <a href="#reviews" aria-label="Reviews"></a>
+    </nav>
+
+    <!-- Main Content Container -->
+    <main id="MainContent" class="content-for-layout focus-none" role="main" tabindex="-1">
+      {{ content_for_layout }}
+    </main>
+
+    <!-- Global Footer -->
+    <footer data-scene="4" role="contentinfo">
+      <div class="wrap">
+        <div class="fgrid">
+          <div class="fcol">
+            <a class="brand" href="/" style="margin-bottom:16px">
+              <span class="mark">
+                {% render 'icon-purelane', icon: 'logo' %}
+              </span>
+              <span class="txt"><span class="n1">Purelane</span><span class="n2">Clean, simply</span></span>
+            </a>
+            <p style="max-width:30ch">Effective cleaning, powered by nature. Made for Indian homes since day one.</p>
+          </div>
+          <div class="fcol">
+            <h5>Shop</h5>
+            <a href="#shop">Bestsellers</a>
+            <a href="#combos">Combos</a>
+            <a href="#bundles">Bundles</a>
+            <a href="#reviews">Reviews</a>
+          </div>
+          <div class="fcol">
+            <h5>About</h5>
+            <a href="#shop">How it works</a>
+            <a href="#bundles">Sustainability</a>
+            <a href="#reviews">FAQs</a>
+          </div>
+          <div class="fcol">
+            <h5>Get in touch</h5>
+            <a href="mailto:hello@purelane.com">hello@purelane.com</a>
+            <a href="tel:+919930123234">+91 9930 123 234</a>
+            <p style="font-size:12px;color:var(--paper-3)">Purelane Eco Products Pvt Ltd</p>
+          </div>
+        </div>
+        <div class="fbot">
+          <span>© {{ 'now' | date: "%Y" }} {{ shop.name | default: 'Purelane Eco Products Private Limited' }}</span>
+          <span>Privacy · Terms · Refunds · Contact</span>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Mobile Sticky CTA -->
+    <div class="sticky">
+      <span class="lbl"><b>Pick any 3, pay ₹499</b><span>Free shipping, always</span></span>
+      <a class="btn btn-primary btn-sm" href="#bundles">Build bundle</a>
+    </div>
+
+    <!-- Theme Base Script -->
+    <script src="{{ 'purelane-theme.js' | asset_url }}" defer></script>
+  </body>
+</html>
