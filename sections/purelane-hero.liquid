@@ -1,0 +1,321 @@
+<section class="hero" data-scene="1" id="section-{{ section.id }}">
+  <div class="hero-grid">
+
+    <!-- Desktop Badges Rail -->
+    <div class="badges glass-2" aria-label="Product promises">
+      {% for block in section.blocks %}
+        {% if block.type == 'badge' %}
+          <div class="badge" {{ block.shopify_attributes }}>
+            <span class="bi">
+              {% render 'icon-purelane', icon: block.settings.icon %}
+            </span>
+            <span>{{ block.settings.label_1 }}<br>{{ block.settings.label_2 }}</span>
+          </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+
+    <!-- Main Copy -->
+    <div class="hero-copy">
+      <h1 class="d1 rv in">
+        {{ section.settings.heading_line_1 | default: 'Clean' }}<br>
+        {{ section.settings.heading_line_2 | default: 'That' }}<br>
+        <span class="lime">{{ section.settings.heading_accent | default: 'Lasts' }}</span>
+      </h1>
+
+      <div class="rule rv rv-d1">
+        <i></i>
+        {% render 'icon-purelane', icon: 'leaf' %}
+        <i></i>
+      </div>
+
+      <p class="lede rv rv-d2">
+        {{ section.settings.description | default: 'Homecare that works on the toughest grime, made from plants. Kind to your home, your family and the world outside it.' }}
+      </p>
+
+      <div class="hero-cta rv rv-d3">
+        <a class="btn btn-primary" href="{{ section.settings.primary_cta_url | default: '#shop' }}">
+          {{ section.settings.primary_cta_label | default: 'Shop now' }}
+          {% render 'icon-purelane', icon: 'arrow-right' %}
+        </a>
+        <a class="btn btn-ghost" href="{{ section.settings.secondary_cta_url | default: '#how' }}">
+          {{ section.settings.secondary_cta_label | default: 'How it works' }}
+        </a>
+      </div>
+
+      <!-- Mobile Badge Strip -->
+      <div class="badgestrip rv rv-d4">
+        {% for block in section.blocks %}
+          {% if block.type == 'badge' %}
+            <div class="glass-2">
+              {% render 'icon-purelane', icon: block.settings.icon %}
+              {{ block.settings.mobile_label }}
+            </div>
+          {% endif %}
+        {% endfor %}
+      </div>
+    </div>
+
+    <!-- Dynamic Hero Product Showcase Stage -->
+    <div class="hero-prod" id="heroProd">
+      <div class="hstage" id="hstage">
+        <div class="hslide hs1 on" data-n="1">
+          <span class="hp d1">
+            {% if section.settings.product_1_image %}
+              <img src="{{ section.settings.product_1_image | image_url: width: 600 }}" alt="Purelane Cleaner" loading="eager" fetchpriority="high" width="300" height="500">
+            {% else %}
+              <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzODAgMTE3NyIgd2lkdGg9IjM4MCIgaGVpZ2h0PSIxMTc3Ij48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjNmI1NWI4IiByeD0iNDAiLz48L3N2Zz4=" alt="Purelane Cleaner" width="300" height="500">
+            {% endif %}
+          </span>
+          <div class="glass-2 ptag">
+            <span class="lbl">{{ section.settings.s1_label | default: 'Single bottle' }}</span>
+            <span class="val">
+              <strong>{{ section.settings.s1_price | default: '₹200' }}</strong>
+              <s>{{ section.settings.s1_compare | default: '₹299' }}</s>
+            </span>
+            <span class="cut">{{ section.settings.s1_tag | default: '33% off' }}</span>
+          </div>
+        </div>
+
+        <div class="hslide hs2" data-n="2">
+          <span class="hp d1">
+            <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzODAgMTE4MCIgd2lkdGg9IjM4MCIgaGVpZ2h0PSIxMTgwIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjN2E2MmMyIiByeD0iNDAiLz48L3N2Zz4=" alt="Purelane Product 1" width="300" height="500">
+          </span>
+          <span class="hp d2">
+            <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzODAgMTE3NyIgd2lkdGg9IjM4MCIgaGVpZ2h0PSIxMTc3Ij48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjNmI1NWI4IiByeD0iNDAiLz48L3N2Zz4=" alt="Purelane Product 2" width="300" height="500">
+          </span>
+          <div class="glass-2 ptag">
+            <span class="lbl">{{ section.settings.s2_label | default: 'Any 2 products' }}</span>
+            <span class="val">
+              <strong>{{ section.settings.s2_price | default: '₹349' }}</strong>
+              <s>{{ section.settings.s2_compare | default: '₹598' }}</s>
+            </span>
+            <span class="cut">{{ section.settings.s2_tag | default: 'Save ₹249' }}</span>
+          </div>
+        </div>
+
+        <div class="hslide hs3" data-n="3">
+          <span class="hp d1"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzODAgMTE4MCIgd2lkdGg9IjM4MCIgaGVpZ2h0PSIxMTgwIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjN2E2MmMyIiByeD0iNDAiLz48L3N2Zz4=" alt="Product 1" width="300" height="500"></span>
+          <span class="hp d2"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzNjAgMTA1NCIgd2lkdGg9IjM2MCIgaGVpZ2h0PSIxMDU0Ij48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjNWE0NmEzIiByeD0iNDAiLz48L3N2Zz4=" alt="Product 2" width="300" height="500"></span>
+          <span class="hp d3"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzODAgMTE3NyIgd2lkdGg9IjM4MCIgaGVpZ2h0PSIxMTc3Ij48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjNmI1NWI4IiByeD0iNDAiLz48L3N2Zz4=" alt="Product 3" width="300" height="500"></span>
+          <div class="glass-2 ptag">
+            <span class="lbl">{{ section.settings.s3_label | default: 'Any 3 products' }}</span>
+            <span class="val">
+              <strong>{{ section.settings.s3_price | default: '₹499' }}</strong>
+              <s>{{ section.settings.s3_compare | default: '₹897' }}</s>
+            </span>
+            <span class="cut">{{ section.settings.s3_tag | default: 'Save ₹398' }}</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="hdots" id="hdots">
+        <button type="button" class="on" aria-label="Show 1 product"></button>
+        <button type="button" class="" aria-label="Show 2 products"></button>
+        <button type="button" class="" aria-label="Show 3 products"></button>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Purelane Hero",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading_line_1",
+      "label": "Heading Line 1",
+      "default": "Clean"
+    },
+    {
+      "type": "text",
+      "id": "heading_line_2",
+      "label": "Heading Line 2",
+      "default": "That"
+    },
+    {
+      "type": "text",
+      "id": "heading_accent",
+      "label": "Heading Accent Word",
+      "default": "Lasts"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Lede Description",
+      "default": "Homecare that works on the toughest grime, made from plants. Kind to your home, your family and the world outside it."
+    },
+    {
+      "type": "text",
+      "id": "primary_cta_label",
+      "label": "Primary Button Text",
+      "default": "Shop now"
+    },
+    {
+      "type": "url",
+      "id": "primary_cta_url",
+      "label": "Primary Button URL",
+      "default": "/#shop"
+    },
+    {
+      "type": "text",
+      "id": "secondary_cta_label",
+      "label": "Secondary Button Text",
+      "default": "How it works"
+    },
+    {
+      "type": "url",
+      "id": "secondary_cta_url",
+      "label": "Secondary Button URL",
+      "default": "/#how"
+    },
+    {
+      "type": "image_picker",
+      "id": "product_1_image",
+      "label": "Featured Stage Image"
+    },
+    {
+      "type": "header",
+      "content": "Stage 1 Pricing"
+    },
+    {
+      "type": "text",
+      "id": "s1_label",
+      "label": "Stage 1 Label",
+      "default": "Single bottle"
+    },
+    {
+      "type": "text",
+      "id": "s1_price",
+      "label": "Stage 1 Price",
+      "default": "₹200"
+    },
+    {
+      "type": "text",
+      "id": "s1_compare",
+      "label": "Stage 1 Compare Price",
+      "default": "₹299"
+    },
+    {
+      "type": "text",
+      "id": "s1_tag",
+      "label": "Stage 1 Discount Tag",
+      "default": "33% off"
+    },
+    {
+      "type": "header",
+      "content": "Stage 2 Pricing"
+    },
+    {
+      "type": "text",
+      "id": "s2_label",
+      "label": "Stage 2 Label",
+      "default": "Any 2 products"
+    },
+    {
+      "type": "text",
+      "id": "s2_price",
+      "label": "Stage 2 Price",
+      "default": "₹349"
+    },
+    {
+      "type": "text",
+      "id": "s2_compare",
+      "label": "Stage 2 Compare Price",
+      "default": "₹598"
+    },
+    {
+      "type": "text",
+      "id": "s2_tag",
+      "label": "Stage 2 Discount Tag",
+      "default": "Save ₹249"
+    },
+    {
+      "type": "header",
+      "content": "Stage 3 Pricing"
+    },
+    {
+      "type": "text",
+      "id": "s3_label",
+      "label": "Stage 3 Label",
+      "default": "Any 3 products"
+    },
+    {
+      "type": "text",
+      "id": "s3_price",
+      "label": "Stage 3 Price",
+      "default": "₹499"
+    },
+    {
+      "type": "text",
+      "id": "s3_compare",
+      "label": "Stage 3 Compare Price",
+      "default": "₹897"
+    },
+    {
+      "type": "text",
+      "id": "s3_tag",
+      "label": "Stage 3 Discount Tag",
+      "default": "Save ₹398"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "badge",
+      "name": "Value Badge",
+      "settings": [
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "Icon",
+          "options": [
+            { "value": "leaf", "label": "Leaf (Plant powered)" },
+            { "value": "shield", "label": "Shield (Safe for kids)" },
+            { "value": "no-chem", "label": "No-Chem (Zero harsh chem)" }
+          ],
+          "default": "leaf"
+        },
+        {
+          "type": "text",
+          "id": "label_1",
+          "label": "Label Line 1",
+          "default": "Plant"
+        },
+        {
+          "type": "text",
+          "id": "label_2",
+          "label": "Label Line 2",
+          "default": "powered"
+        },
+        {
+          "type": "text",
+          "id": "mobile_label",
+          "label": "Mobile Label",
+          "default": "Plant powered"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Purelane Hero",
+      "blocks": [
+        {
+          "type": "badge",
+          "settings": { "icon": "leaf", "label_1": "Plant", "label_2": "powered", "mobile_label": "Plant powered" }
+        },
+        {
+          "type": "badge",
+          "settings": { "icon": "shield", "label_1": "Safe for", "label_2": "kids & pets", "mobile_label": "Kids & pet safe" }
+        },
+        {
+          "type": "badge",
+          "settings": { "icon": "no-chem", "label_1": "Zero harsh", "label_2": "chemicals", "mobile_label": "Zero harsh chem" }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

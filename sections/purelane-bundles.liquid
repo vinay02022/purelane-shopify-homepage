@@ -1,0 +1,203 @@
+<section class="sec" id="bundles" data-scene="3">
+  <div class="wrap">
+    <div class="glass sec-pad rv" style="margin-bottom:16px">
+      <div class="panel-head" style="margin-bottom:0">
+        {% if section.settings.kicker != blank %}
+          <span class="kicker">{{ section.settings.kicker }}</span>
+        {% endif %}
+
+        {% if section.settings.heading != blank %}
+          <h2 class="d2" style="margin-top:12px">{{ section.settings.heading }}</h2>
+        {% endif %}
+
+        {% if section.settings.description != blank %}
+          <p class="lede" style="margin:0 auto">
+            {{ section.settings.description }}
+          </p>
+        {% endif %}
+      </div>
+    </div>
+
+    <div class="tiers">
+      {% for block in section.blocks %}
+        {% render 'card-tier-purelane', block: block %}
+      {% else %}
+        {% comment %} Render default cards if no blocks exist {% endcomment %}
+        <article class="glass tier rv">
+          <span class="tag">Starter</span>
+          <div class="qty">2<small>Products</small></div>
+          <div class="price">₹349 <s>₹598</s></div>
+          <p class="body-s" style="font-size:12px">Flat ₹174 per product</p>
+          <ul>
+            <li>{% render 'icon-purelane', icon: 'check' %} Pick any two products</li>
+            <li>{% render 'icon-purelane', icon: 'check' %} Free shipping across India</li>
+          </ul>
+          <a class="btn btn-ghost" href="#shop">Build this box</a>
+        </article>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Purelane Bundles",
+  "settings": [
+    {
+      "type": "text",
+      "id": "kicker",
+      "label": "Section Kicker",
+      "default": "Build your bundle"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Section Heading",
+      "default": "One box. Every room."
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Lede Description",
+      "default": "Mix and match across kitchen, laundry, home and skin. One flat price, no code needed, free shipping either way."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "tier",
+      "name": "Bundle Tier",
+      "settings": [
+        {
+          "type": "text",
+          "id": "tag",
+          "label": "Tag Label",
+          "default": "Starter"
+        },
+        {
+          "type": "checkbox",
+          "id": "is_popular",
+          "label": "Highlight as Most Popular",
+          "default": false
+        },
+        {
+          "type": "number",
+          "id": "qty_number",
+          "label": "Product Quantity Count",
+          "default": 2
+        },
+        {
+          "type": "text",
+          "id": "price",
+          "label": "Tier Price",
+          "default": "₹349"
+        },
+        {
+          "type": "text",
+          "id": "compare_at_price",
+          "label": "Compare Price",
+          "default": "₹598"
+        },
+        {
+          "type": "text",
+          "id": "unit_price_note",
+          "label": "Unit Price Note",
+          "default": "Flat ₹174 per product"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_1",
+          "label": "Preview Image 1"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_2",
+          "label": "Preview Image 2"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_3",
+          "label": "Preview Image 3"
+        },
+        {
+          "type": "text",
+          "id": "feature_1",
+          "label": "Feature Bullet 1",
+          "default": "Pick any two products"
+        },
+        {
+          "type": "text",
+          "id": "feature_2",
+          "label": "Feature Bullet 2",
+          "default": "Free shipping across India"
+        },
+        {
+          "type": "text",
+          "id": "feature_3",
+          "label": "Feature Bullet 3",
+          "default": "Covers kitchen and laundry"
+        },
+        {
+          "type": "text",
+          "id": "button_label",
+          "label": "Button Text",
+          "default": "Build this box"
+        },
+        {
+          "type": "url",
+          "id": "button_url",
+          "label": "Button Link",
+          "default": "/#shop"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Purelane Bundles",
+      "blocks": [
+        {
+          "type": "tier",
+          "settings": {
+            "tag": "Starter",
+            "is_popular": false,
+            "qty_number": 2,
+            "price": "₹349",
+            "compare_at_price": "₹598",
+            "unit_price_note": "Flat ₹174 per product",
+            "feature_1": "Pick any two products",
+            "feature_2": "Free shipping across India"
+          }
+        },
+        {
+          "type": "tier",
+          "settings": {
+            "tag": "Most popular",
+            "is_popular": true,
+            "qty_number": 3,
+            "price": "₹499",
+            "compare_at_price": "₹897",
+            "unit_price_note": "Flat ₹166 per product",
+            "feature_1": "Pick any three products",
+            "feature_2": "Covers kitchen and laundry",
+            "feature_3": "Free shipping across India"
+          }
+        },
+        {
+          "type": "tier",
+          "settings": {
+            "tag": "Whole home",
+            "is_popular": false,
+            "qty_number": 5,
+            "price": "₹799",
+            "compare_at_price": "₹1495",
+            "unit_price_note": "Flat ₹160 per product",
+            "feature_1": "Pick any five products",
+            "feature_2": "Every room in one order",
+            "feature_3": "Free shipping across India"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
