@@ -1,0 +1,26 @@
+{
+  "sections": {
+    "hero": {
+      "type": "purelane-hero"
+    },
+    "product_grid": {
+      "type": "purelane-product-grid"
+    },
+    "combos_rail": {
+      "type": "purelane-combos-rail"
+    },
+    "bundles": {
+      "type": "purelane-bundles"
+    },
+    "reviews_rail": {
+      "type": "purelane-reviews-rail"
+    }
+  },
+  "order": [
+    "hero",
+    "product_grid",
+    "combos_rail",
+    "bundles",
+    "reviews_rail"
+  ]
+}
